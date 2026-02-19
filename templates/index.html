@@ -151,6 +151,11 @@
         </div>
         {% endif %}
 
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+
+
         {% if comic %}
         <!-- Display the comic if we successfully fetched it -->
         <div class="comic-container">
@@ -167,6 +172,18 @@
                 Published: {{ comic.month }}/{{ comic.day }}/{{ comic.year }}
             </p>
             <!-- TODO: Add any buttons for navigation, random, or form to fetch comics -->
+            <div class="navigation">
+                <a href="{{ url_for('random_comic') }}" class="btn">
+                    🎲 Random Comic
+                </a>
+            </div>
+
+            <div class = search-form>
+                <form action="{{ url_for('search_comic') }}" method="get">
+                    <input type="text" name="query" placeholder="Search comics by title or alt text..." required>
+                    <button type="submit" class="btn">🔍 Search</button>
+                </form>
+            </div>    
         </div>
         {% endif %}
     </main>
